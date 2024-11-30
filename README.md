@@ -1,6 +1,6 @@
 # ModIPA
 Mac app to modify .ipa metadata including app icon, display name, and app version to avoid updates<br>
-Compatible with macOS 10.11+
+Compatible with macOS 11.5+
 <br><br>
 
 ## Install
