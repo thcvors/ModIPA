@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		F43B7DAC2CFB7B63001483F1 /* ZIPFoundation in Frameworks */ = {isa = PBXBuildFile; productRef = F43B7DAB2CFB7B63001483F1 /* ZIPFoundation */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		F43B7D882CFB7A54001483F1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -27,11 +31,25 @@
 		F43B7D762CFB7A51001483F1 /* ModIPA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ModIPA.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F43B7D872CFB7A54001483F1 /* ModIPATests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ModIPATests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F43B7D912CFB7A55001483F1 /* ModIPAUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ModIPAUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F43B7DCD2CFB9176001483F1 /* Metal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Metal.framework; path = System/Library/Frameworks/Metal.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		F4B05E512CFBA9AA0031AA21 /* Exceptions for "ModIPA" folder in "ModIPA" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = F43B7D752CFB7A51001483F1 /* ModIPA */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		F43B7D782CFB7A51001483F1 /* ModIPA */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				F4B05E512CFBA9AA0031AA21 /* Exceptions for "ModIPA" folder in "ModIPA" target */,
+			);
 			path = ModIPA;
 			sourceTree = "<group>";
 		};
@@ -52,6 +70,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F43B7DAC2CFB7B63001483F1 /* ZIPFoundation in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,6 +97,7 @@
 				F43B7D782CFB7A51001483F1 /* ModIPA */,
 				F43B7D8A2CFB7A54001483F1 /* ModIPATests */,
 				F43B7D942CFB7A55001483F1 /* ModIPAUITests */,
+				F43B7DCC2CFB9176001483F1 /* Frameworks */,
 				F43B7D772CFB7A51001483F1 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -90,6 +110,14 @@
 				F43B7D912CFB7A55001483F1 /* ModIPAUITests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		F43B7DCC2CFB9176001483F1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F43B7DCD2CFB9176001483F1 /* Metal.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -112,6 +140,7 @@
 			);
 			name = ModIPA;
 			packageProductDependencies = (
+				F43B7DAB2CFB7B63001483F1 /* ZIPFoundation */,
 			);
 			productName = ModIPA;
 			productReference = F43B7D762CFB7A51001483F1 /* ModIPA.app */;
@@ -191,10 +220,11 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
-				Base,
 			);
 			mainGroup = F43B7D6D2CFB7A51001483F1;
-			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				F43B7DAA2CFB7B63001483F1 /* XCRemoteSwiftPackageReference "ZIPFoundation" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = F43B7D772CFB7A51001483F1 /* Products */;
 			projectDirPath = "";
@@ -322,7 +352,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MACOSX_DEPLOYMENT_TARGET = 15.1;
+				MACOSX_DEPLOYMENT_TARGET = 11.5;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -379,7 +409,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MACOSX_DEPLOYMENT_TARGET = 15.1;
+				MACOSX_DEPLOYMENT_TARGET = 11.5;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = macosx;
@@ -393,22 +423,29 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = ModIPA/ModIPA.entitlements;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
+				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"ModIPA/Preview Content\"";
-				DEVELOPMENT_TEAM = 23Z4DA7LN3;
+				DEVELOPMENT_ASSET_PATHS = ModIPA/Assets.xcassets;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=macosx*]" = 23Z4DA7LN3;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_FILE = ModIPA/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = ModIPA;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "© 2024 CVORS. All rights reserved.";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MACOSX_DEPLOYMENT_TARGET = 11.5;
+				MARKETING_VERSION = 1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = de.cvors.ModIPA;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = DevelopmentModIPA;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 			};
@@ -420,22 +457,28 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = ModIPA/ModIPA.entitlements;
-				CODE_SIGN_STYLE = Automatic;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
+				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"ModIPA/Preview Content\"";
-				DEVELOPMENT_TEAM = 23Z4DA7LN3;
+				DEVELOPMENT_ASSET_PATHS = ModIPA/Assets.xcassets;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=macosx*]" = 23Z4DA7LN3;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_FILE = ModIPA/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = ModIPA;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "© 2024 CVORS. All rights reserved.";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MACOSX_DEPLOYMENT_TARGET = 11.5;
+				MARKETING_VERSION = 1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = de.cvors.ModIPA;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = DevelopmentModIPA;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 			};
@@ -449,7 +492,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 23Z4DA7LN3;
 				GENERATE_INFOPLIST_FILE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 15.1;
+				MACOSX_DEPLOYMENT_TARGET = 11.5;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = de.cvors.ModIPATests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -467,7 +510,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 23Z4DA7LN3;
 				GENERATE_INFOPLIST_FILE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 15.1;
+				MACOSX_DEPLOYMENT_TARGET = 11.5;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = de.cvors.ModIPATests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -484,6 +527,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 23Z4DA7LN3;
 				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 11.5;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = de.cvors.ModIPAUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -500,6 +544,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 23Z4DA7LN3;
 				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 11.5;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = de.cvors.ModIPAUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -549,6 +594,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		F43B7DAA2CFB7B63001483F1 /* XCRemoteSwiftPackageReference "ZIPFoundation" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/weichsel/ZIPFoundation";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.9.19;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		F43B7DAB2CFB7B63001483F1 /* ZIPFoundation */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F43B7DAA2CFB7B63001483F1 /* XCRemoteSwiftPackageReference "ZIPFoundation" */;
+			productName = ZIPFoundation;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = F43B7D6E2CFB7A51001483F1 /* Project object */;
 }
