@@ -10,26 +10,27 @@ import XCTest
 final class ModIPAUITests: XCTestCase {
 
     override func setUpWithError() throws {
-        // Set up initial state for each test
         continueAfterFailure = false
     }
 
     override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        // Clean-up if necessary
     }
 
     @MainActor
     func testExample() throws {
-        // UI tests must launch the application that they test.
         let app = XCUIApplication()
         app.launch()
 
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+        // Example: Tap the upload button
+        let uploadButton = app.buttons["Upload File"]
+        XCTAssertTrue(uploadButton.exists, "Upload File button should exist")
+        uploadButton.tap()
     }
 
     @MainActor
     func testLaunchPerformance() throws {
-        if #available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 7.0, *) {
+        if #available(macOS 10.15, *) {
             measure(metrics: [XCTApplicationLaunchMetric()]) {
                 XCUIApplication().launch()
             }
@@ -37,6 +38,7 @@ final class ModIPAUITests: XCTestCase {
     }
 }
 
+// ✅ Extension for typing into text fields
 extension XCUIElement {
     func clearAndEnterText(_ text: String) {
         click()

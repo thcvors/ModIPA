@@ -11,6 +11,7 @@ import ZIPFoundation
 class ViewController: NSViewController {
     @IBOutlet weak var ipaName: NSTextField!
     @IBOutlet weak var progressBar: NSProgressIndicator!
+    @IBOutlet weak var githubButton: NSButton!
 
     var appPath = URL(fileURLWithPath: "")
     var currentlyExtracting = false
@@ -20,7 +21,14 @@ class ViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Set up notification for application termination
+        progressBar.isHidden = true
+        progressBar.minValue = 0
+        progressBar.maxValue = 100
+        progressBar.doubleValue = 0
+
+        githubButton.target = self
+        githubButton.action = #selector(openGitHubLink)
+
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(applicationWillTerminate),
@@ -29,8 +37,13 @@ class ViewController: NSViewController {
         )
     }
 
+    @objc func openGitHubLink() {
+        if let url = URL(string: "https://github.com/thcvors/ModIPA") {
+            NSWorkspace.shared.open(url)
+        }
+    }
+
     @objc func applicationWillTerminate(notification: Notification) {
-        // Clean up temporary files if extraction is incomplete
         if currentlyExtracting {
             removeTemporaryFiles()
         }
@@ -38,81 +51,74 @@ class ViewController: NSViewController {
 
     private func removeTemporaryFiles() {
         do {
-            if FileManager.default.fileExists(atPath: ipaCopy + ".zip") {
-                try FileManager.default.removeItem(atPath: ipaCopy + ".zip")
+            let zipPath = ipaCopy + ".zip"
+            if FileManager.default.fileExists(atPath: zipPath) {
+                try FileManager.default.removeItem(atPath: zipPath)
             }
             if FileManager.default.fileExists(atPath: ipaCopy) {
                 try FileManager.default.removeItem(atPath: ipaCopy)
             }
         } catch {
-            print("Error cleaning up temporary files: \(error.localizedDescription)")
-        }
-    }
-
-    private func openEditController() {
-        DispatchQueue.main.async {
-            do {
-                // Locate the app bundle inside the Payload directory
-                let payloadContents = try FileManager.default.contentsOfDirectory(
-                    at: URL(fileURLWithPath: self.ipaCopy + "/Payload"),
-                    includingPropertiesForKeys: nil,
-                    options: [.skipsSubdirectoryDescendants, .skipsHiddenFiles]
-                )
-                guard let appBundle = payloadContents.first else {
-                    self.showErrorAlert(message: "No app bundle found in the Payload directory.")
-                    return
-                }
-
-                self.appPath = appBundle
-                self.performSegue(withIdentifier: "editsegue", sender: self)
-            } catch {
-                self.showErrorAlert(message: "Error locating app bundle: \(error.localizedDescription)")
-            }
+            showErrorAlert(message: "Error cleaning up temporary files: \(error.localizedDescription)")
         }
     }
 
     private func extractPayloadFromIPA(path: URL) {
         ipaCopy = path.deletingPathExtension().lastPathComponent + "_ModIPA"
+        let progress = Progress(totalUnitCount: 100)
+        let zipPath = ipaCopy + ".zip"
 
-        // If extracted files already exist, skip re-extraction
-        if FileManager.default.fileExists(atPath: ipaCopy),
-           !FileManager.default.fileExists(atPath: ipaCopy + ".zip") {
-            openEditController()
-            return
-        }
-
-        let progress = Progress()
-
-        // Remove any old extraction folder
         if FileManager.default.fileExists(atPath: ipaCopy) {
-            do {
-                try FileManager.default.removeItem(atPath: ipaCopy)
-            } catch {
-                showErrorAlert(message: "Error removing previous extraction: \(error.localizedDescription)")
-                return
-            }
+            try? FileManager.default.removeItem(atPath: ipaCopy)
         }
 
-        DispatchQueue.global(qos: .userInteractive).async {
+        DispatchQueue.global(qos: .userInitiated).async {
             do {
                 self.currentlyExtracting = true
 
-                // Copy IPA file and unzip it
-                if !FileManager.default.fileExists(atPath: self.ipaCopy + ".zip") {
-                    try FileManager.default.copyItem(at: path, to: URL(fileURLWithPath: self.ipaCopy + ".zip"))
+                if !FileManager.default.fileExists(atPath: zipPath) {
+                    try FileManager.default.copyItem(at: path, to: URL(fileURLWithPath: zipPath))
                 }
+
                 try FileManager.default.unzipItem(
-                    at: URL(fileURLWithPath: self.ipaCopy + ".zip"),
+                    at: URL(fileURLWithPath: zipPath),
                     to: URL(fileURLWithPath: self.ipaCopy),
                     progress: progress
                 )
-                try FileManager.default.removeItem(atPath: self.ipaCopy + ".zip")
 
+                try FileManager.default.removeItem(atPath: zipPath)
                 self.currentlyExtracting = false
-                self.openEditController()
+
+                // ✅ Validate .app bundle & Info.plist before continuing
+                let payloadPath = URL(fileURLWithPath: self.ipaCopy).appendingPathComponent("Payload")
+                let payloadContents = try FileManager.default.contentsOfDirectory(
+                    at: payloadPath,
+                    includingPropertiesForKeys: nil,
+                    options: [.skipsSubdirectoryDescendants, .skipsHiddenFiles]
+                )
+
+                guard let appBundle = payloadContents.first(where: { $0.pathExtension == "app" }) else {
+                    throw NSError(domain: "ModIPA", code: 1, userInfo: [NSLocalizedDescriptionKey: "No .app bundle found in Payload."])
+                }
+
+                let infoPlistPath = appBundle.appendingPathComponent("Info.plist")
+                guard FileManager.default.fileExists(atPath: infoPlistPath.path),
+                      NSDictionary(contentsOfFile: infoPlistPath.path) != nil else {
+                    throw NSError(domain: "ModIPA", code: 2, userInfo: [NSLocalizedDescriptionKey: "Failed to load Info.plist."])
+                }
+
+                self.appPath = appBundle
+
+                DispatchQueue.main.async {
+                    self.progressBar.doubleValue = 100
+                    self.progressBar.isHidden = true
+                    self.openEditController()
+                }
+
             } catch {
                 DispatchQueue.main.async {
-                    self.showErrorAlert(message: "Error during extraction: \(error.localizedDescription)")
+                    self.progressBar.isHidden = true
+                    self.showErrorAlert(message: error.localizedDescription)
                 }
             }
         }
@@ -123,41 +129,46 @@ class ViewController: NSViewController {
                     self.progressBar.isHidden = false
                     self.progressBar.doubleValue = progress.fractionCompleted * 100
                 }
-            }
-            DispatchQueue.main.async {
-                self.progressBar.isHidden = true
+                usleep(100_000)
             }
         }
     }
 
-    override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
-        if segue.identifier == "editsegue" {
-            // Pass the app path and file name to the EditController
-            if let editController = (segue.destinationController as? NSWindowController)?.contentViewController as? EditController {
-                editController.appPath = appPath
-                editController.ipaFileName = ipaFileName
-            }
-            self.view.window?.close()
-        }
+    private func openEditController() {
+        let editController = self.storyboard?.instantiateController(withIdentifier: "EditController") as! EditController
+        editController.appPath = self.appPath
+        editController.ipaFileName = self.ipaFileName
+        self.view.window?.contentViewController = editController
+    }
+
+    @IBAction func githubButtonClicked(_ sender: NSButton) {
+        openGitHubLink()
     }
 
     @IBAction func uploadFile(_ sender: Any) {
         let dialog = NSOpenPanel()
-        dialog.title = "Select an .ipa file"
+        dialog.title = "Select an IPA file"
         dialog.showsResizeIndicator = true
         dialog.showsHiddenFiles = false
         dialog.allowsMultipleSelection = false
         dialog.canChooseDirectories = false
         dialog.allowedFileTypes = ["ipa"]
+        dialog.level = .modalPanel
 
-        if dialog.runModal() == .OK, let selectedFile = dialog.url {
-            ipaName.stringValue = selectedFile.lastPathComponent
-            ipaFileName = selectedFile.deletingPathExtension().lastPathComponent
-            extractPayloadFromIPA(path: selectedFile)
+        if let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
+            dialog.directoryURL = documentsURL
         }
-    }
 
-    // MARK: - Helper Methods
+        guard dialog.runModal() == .OK, let selectedFile = dialog.url else {
+            self.showErrorAlert(message: "No file selected.")
+            return
+        }
+
+        print("📂 Selected IPA: \(selectedFile.lastPathComponent)")
+        self.ipaName.stringValue = selectedFile.lastPathComponent
+        self.ipaFileName = selectedFile.deletingPathExtension().lastPathComponent
+        self.extractPayloadFromIPA(path: selectedFile)
+    }
 
     private func showErrorAlert(message: String) {
         let alert = NSAlert()

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1630"
+   LastUpgradeVersion = "1620"
    version = "1.7">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -19,9 +19,9 @@
             parallelizable = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "F43B7D862CFB7A54001483F1"
-               BuildableName = "ModIPATests.xctest"
-               BlueprintName = "ModIPATests"
+               BlueprintIdentifier = "F43B7D902CFB7A55001483F1"
+               BuildableName = "ModIPAUITests.xctest"
+               BlueprintName = "ModIPAUITests"
                ReferencedContainer = "container:ModIPA.xcodeproj">
             </BuildableReference>
          </TestableReference>

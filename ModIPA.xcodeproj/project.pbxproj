@@ -3,13 +3,12 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 90;
+	objectVersion = 77;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		F43B7DAC2CFB7B63001483F1 /* ZIPFoundation in Frameworks */ = {isa = PBXBuildFile; productRef = F43B7DAB2CFB7B63001483F1 /* ZIPFoundation */; };
 		F4C3CD9B2D8C205400AB36C8 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4C3CD992D8C205000AB36C8 /* Cocoa.framework */; };
-		F4C3CD9C2D8C205400AB36C8 /* Cocoa.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F4C3CD992D8C205000AB36C8 /* Cocoa.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F4C3CDA02D8C249B00AB36C8 /* ZipArchive in Frameworks */ = {isa = PBXBuildFile; productRef = F4C3CD9F2D8C249B00AB36C8 /* ZipArchive */; };
 		F4C3CDA22D8C278100AB36C8 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4C3CDA12D8C278100AB36C8 /* XCTest.framework */; };
 /* End PBXBuildFile section */
@@ -31,18 +30,6 @@
 		};
 /* End PBXContainerItemProxy section */
 
-/* Begin PBXCopyFilesBuildPhase section */
-		F4C3CD9D2D8C205400AB36C8 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			dstPath = "";
-			dstSubfolder = Frameworks;
-			files = (
-				F4C3CD9C2D8C205400AB36C8 /* Cocoa.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-		};
-/* End PBXCopyFilesBuildPhase section */
-
 /* Begin PBXFileReference section */
 		F43B7D762CFB7A51001483F1 /* ModIPA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ModIPA.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F43B7D872CFB7A54001483F1 /* ModIPATests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ModIPATests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -52,6 +39,20 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		F49AAD192D8C46A8004F0444 /* Exceptions for "ModIPATests" folder in "ModIPATests" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = F43B7D862CFB7A54001483F1 /* ModIPATests */;
+		};
+		F49AAD1A2D8C46AD004F0444 /* Exceptions for "ModIPAUITests" folder in "ModIPAUITests" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = F43B7D902CFB7A55001483F1 /* ModIPAUITests */;
+		};
 		F4B05E512CFBA9AA0031AA21 /* Exceptions for "ModIPA" folder in "ModIPA" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
@@ -72,11 +73,17 @@
 		};
 		F43B7D8A2CFB7A54001483F1 /* ModIPATests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				F49AAD192D8C46A8004F0444 /* Exceptions for "ModIPATests" folder in "ModIPATests" target */,
+			);
 			path = ModIPATests;
 			sourceTree = "<group>";
 		};
 		F43B7D942CFB7A55001483F1 /* ModIPAUITests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				F49AAD1A2D8C46AD004F0444 /* Exceptions for "ModIPAUITests" folder in "ModIPAUITests" target */,
+			);
 			path = ModIPAUITests;
 			sourceTree = "<group>";
 		};
@@ -85,22 +92,28 @@
 /* Begin PBXFrameworksBuildPhase section */
 		F43B7D732CFB7A51001483F1 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
 			files = (
 				F4C3CD9B2D8C205400AB36C8 /* Cocoa.framework in Frameworks */,
 				F43B7DAC2CFB7B63001483F1 /* ZIPFoundation in Frameworks */,
 				F4C3CDA02D8C249B00AB36C8 /* ZipArchive in Frameworks */,
 			);
+			runOnlyForDeploymentPostprocessing = 0;
 		};
 		F43B7D842CFB7A54001483F1 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
 			files = (
 			);
+			runOnlyForDeploymentPostprocessing = 0;
 		};
 		F43B7D8E2CFB7A55001483F1 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
 			files = (
 				F4C3CDA22D8C278100AB36C8 /* XCTest.framework in Frameworks */,
 			);
+			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
@@ -145,9 +158,10 @@
 				F43B7D722CFB7A51001483F1 /* Sources */,
 				F43B7D732CFB7A51001483F1 /* Frameworks */,
 				F43B7D742CFB7A51001483F1 /* Resources */,
-				F4C3CD9D2D8C205400AB36C8 /* Embed Frameworks */,
 			);
 			buildRules = (
+			);
+			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
 				F43B7D782CFB7A51001483F1 /* ModIPA */,
@@ -178,6 +192,8 @@
 				F43B7D8A2CFB7A54001483F1 /* ModIPATests */,
 			);
 			name = ModIPATests;
+			packageProductDependencies = (
+			);
 			productName = ModIPATests;
 			productReference = F43B7D872CFB7A54001483F1 /* ModIPATests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -199,6 +215,8 @@
 				F43B7D942CFB7A55001483F1 /* ModIPAUITests */,
 			);
 			name = ModIPAUITests;
+			packageProductDependencies = (
+			);
 			productName = ModIPAUITests;
 			productReference = F43B7D912CFB7A55001483F1 /* ModIPAUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
@@ -211,7 +229,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1610;
-				LastUpgradeCheck = 1610;
+				LastUpgradeCheck = 1620;
 				TargetAttributes = {
 					F43B7D752CFB7A51001483F1 = {
 						CreatedOnToolsVersion = 16.1;
@@ -231,13 +249,14 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = F43B7D6D2CFB7A51001483F1;
 			packageReferences = (
 				F43B7DAA2CFB7B63001483F1 /* XCRemoteSwiftPackageReference "ZIPFoundation" */,
 				F4C3CD9E2D8C249B00AB36C8 /* XCRemoteSwiftPackageReference "ZipArchive" */,
 			);
-			preferredProjectObjectVersion = 90;
+			preferredProjectObjectVersion = 77;
 			productRefGroup = F43B7D772CFB7A51001483F1 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -252,36 +271,48 @@
 /* Begin PBXResourcesBuildPhase section */
 		F43B7D742CFB7A51001483F1 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
 			files = (
 			);
+			runOnlyForDeploymentPostprocessing = 0;
 		};
 		F43B7D852CFB7A54001483F1 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
 			files = (
 			);
+			runOnlyForDeploymentPostprocessing = 0;
 		};
 		F43B7D8F2CFB7A55001483F1 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
 			files = (
 			);
+			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		F43B7D722CFB7A51001483F1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
 			files = (
 			);
+			runOnlyForDeploymentPostprocessing = 0;
 		};
 		F43B7D832CFB7A54001483F1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
 			files = (
 			);
+			runOnlyForDeploymentPostprocessing = 0;
 		};
 		F43B7D8D2CFB7A55001483F1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
 			files = (
 			);
+			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
@@ -299,7 +330,7 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		F43B7D992CFB7A55001483F1 /* Debug configuration for PBXProject "ModIPA" */ = {
+		F43B7D992CFB7A55001483F1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -333,6 +364,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -362,7 +394,7 @@
 			};
 			name = Debug;
 		};
-		F43B7D9A2CFB7A55001483F1 /* Release configuration for PBXProject "ModIPA" */ = {
+		F43B7D9A2CFB7A55001483F1 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -396,6 +428,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -417,29 +450,28 @@
 			};
 			name = Release;
 		};
-		F43B7D9C2CFB7A55001483F1 /* Debug configuration for PBXNativeTarget "ModIPA" */ = {
+		F43B7D9C2CFB7A55001483F1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = ModIPA/ModIPA.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = ModIPA/Assets.xcassets;
-				DEVELOPMENT_TEAM = "";
-				"DEVELOPMENT_TEAM[sdk=macosx*]" = 23Z4DA7LN3;
+				DEVELOPMENT_TEAM = 23Z4DA7LN3;
+				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
-					"$(SDKROOT)/Developer/Library/Frameworks",
-				);
+				ENABLE_USER_SELECTED_FILES = readwrite;
+				HEADER_SEARCH_PATHS = /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include;
 				INFOPLIST_FILE = ModIPA/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = ModIPA;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "© 2024 CVORS. All rights reserved.";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -449,34 +481,36 @@
 				PRODUCT_BUNDLE_IDENTIFIER = de.cvors.ModIPA;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = ModipaDevelopment;
+				SUPPORTED_PLATFORMS = macosx;
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
-		F43B7D9D2CFB7A55001483F1 /* Release configuration for PBXNativeTarget "ModIPA" */ = {
+		F43B7D9D2CFB7A55001483F1 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = ModIPA/ModIPA.entitlements;
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "3rd Party Mac Developer Application";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = ModIPA/Assets.xcassets;
-				DEVELOPMENT_TEAM = "";
-				"DEVELOPMENT_TEAM[sdk=macosx*]" = 23Z4DA7LN3;
+				DEVELOPMENT_TEAM = 23Z4DA7LN3;
+				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
-					"$(SDKROOT)/Developer/Library/Frameworks",
-				);
+				ENABLE_USER_SELECTED_FILES = readwrite;
+				HEADER_SEARCH_PATHS = /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include;
 				INFOPLIST_FILE = ModIPA/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = ModIPA;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "© 2024 CVORS. All rights reserved.";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -486,18 +520,21 @@
 				PRODUCT_BUNDLE_IDENTIFIER = de.cvors.ModIPA;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = DistributionModIPA;
+				SUPPORTED_PLATFORMS = macosx;
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
-		F43B7D9F2CFB7A55001483F1 /* Debug configuration for PBXNativeTarget "ModIPATests" */ = {
+		F43B7D9F2CFB7A55001483F1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 23Z4DA7LN3;
 				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 11.5;
@@ -510,12 +547,13 @@
 			};
 			name = Debug;
 		};
-		F43B7DA02CFB7A55001483F1 /* Release configuration for PBXNativeTarget "ModIPATests" */ = {
+		F43B7DA02CFB7A55001483F1 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 23Z4DA7LN3;
 				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 11.5;
@@ -528,16 +566,13 @@
 			};
 			name = Release;
 		};
-		F43B7DA22CFB7A55001483F1 /* Debug configuration for PBXNativeTarget "ModIPAUITests" */ = {
+		F43B7DA22CFB7A55001483F1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 23Z4DA7LN3;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
-					"$(SDKROOT)/Developer/Library/Frameworks",
-				);
 				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 11.5;
 				MARKETING_VERSION = 1.3;
@@ -549,16 +584,13 @@
 			};
 			name = Debug;
 		};
-		F43B7DA32CFB7A55001483F1 /* Release configuration for PBXNativeTarget "ModIPAUITests" */ = {
+		F43B7DA32CFB7A55001483F1 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 23Z4DA7LN3;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
-					"$(SDKROOT)/Developer/Library/Frameworks",
-				);
 				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 11.5;
 				MARKETING_VERSION = 1.3;
@@ -576,33 +608,37 @@
 		F43B7D712CFB7A51001483F1 /* Build configuration list for PBXProject "ModIPA" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				F43B7D992CFB7A55001483F1 /* Debug configuration for PBXProject "ModIPA" */,
-				F43B7D9A2CFB7A55001483F1 /* Release configuration for PBXProject "ModIPA" */,
+				F43B7D992CFB7A55001483F1 /* Debug */,
+				F43B7D9A2CFB7A55001483F1 /* Release */,
 			);
+			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 		F43B7D9B2CFB7A55001483F1 /* Build configuration list for PBXNativeTarget "ModIPA" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				F43B7D9C2CFB7A55001483F1 /* Debug configuration for PBXNativeTarget "ModIPA" */,
-				F43B7D9D2CFB7A55001483F1 /* Release configuration for PBXNativeTarget "ModIPA" */,
+				F43B7D9C2CFB7A55001483F1 /* Debug */,
+				F43B7D9D2CFB7A55001483F1 /* Release */,
 			);
+			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 		F43B7D9E2CFB7A55001483F1 /* Build configuration list for PBXNativeTarget "ModIPATests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				F43B7D9F2CFB7A55001483F1 /* Debug configuration for PBXNativeTarget "ModIPATests" */,
-				F43B7DA02CFB7A55001483F1 /* Release configuration for PBXNativeTarget "ModIPATests" */,
+				F43B7D9F2CFB7A55001483F1 /* Debug */,
+				F43B7DA02CFB7A55001483F1 /* Release */,
 			);
+			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 		F43B7DA12CFB7A55001483F1 /* Build configuration list for PBXNativeTarget "ModIPAUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				F43B7DA22CFB7A55001483F1 /* Debug configuration for PBXNativeTarget "ModIPAUITests" */,
-				F43B7DA32CFB7A55001483F1 /* Release configuration for PBXNativeTarget "ModIPAUITests" */,
+				F43B7DA22CFB7A55001483F1 /* Debug */,
+				F43B7DA32CFB7A55001483F1 /* Release */,
 			);
+			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */

@@ -5,18 +5,18 @@
 //  Created by Daeun Jung on 11/30/24
 //
 
-import Testing
+import XCTest
 import Cocoa
 @testable import ModIPA
 
 class ModIPATests: XCTestCase {
 
     override func setUpWithError() throws {
-        // Called before each test method
+        // Setup code if needed
     }
 
     override func tearDownWithError() throws {
-        // Called after each test method
+        // Teardown code if needed
     }
 
     func testPlistModification() throws {
@@ -41,7 +41,6 @@ class ModIPATests: XCTestCase {
             return
         }
 
-        // ✅ Use the custom resizing function
         let resizedImage = iconImage.resized(to: NSSize(width: 1024, height: 1024))
         XCTAssertEqual(resizedImage.size, NSSize(width: 1024, height: 1024), "Image resizing failed")
     }
@@ -62,11 +61,10 @@ class ModIPATests: XCTestCase {
     }
 
     func testIPAExtractionAndGeneration() throws {
+        let fileManager = FileManager.default
         let testIPAPath = "/path/to/test/app.ipa"
         let extractedPath = "/path/to/extracted"
         let regeneratedIPAPath = "/path/to/regenerated/app.ipa"
-
-        let fileManager = FileManager.default
 
         try fileManager.unzipItem(at: URL(fileURLWithPath: testIPAPath), to: URL(fileURLWithPath: extractedPath))
         XCTAssertTrue(fileManager.fileExists(atPath: extractedPath), "Extraction failed")
@@ -76,7 +74,7 @@ class ModIPATests: XCTestCase {
     }
 
     func testPerformanceExtraction() throws {
-        self.measure {
+        measure {
             let testIPAPath = "/path/to/test/app.ipa"
             let extractedPath = "/path/to/extracted"
             do {
@@ -88,7 +86,7 @@ class ModIPATests: XCTestCase {
     }
 }
 
-// ✅ Add this extension to fix `resized(to:)`
+// ✅ Utility extension for image resizing
 extension NSImage {
     func resized(to targetSize: NSSize) -> NSImage {
         let newImage = NSImage(size: targetSize)
